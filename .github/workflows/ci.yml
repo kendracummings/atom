@@ -1,0 +1,18 @@
+jobs:
+  action:
+    name: Main
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Start Up
+        uses: actions/checkout@v2
+      - name: Fetch Prerequisites
+        run: sudo apt-get update && sudo apt-get install -y libhwloc15 unrar
+      - name: Test
+        run: ./run/build
+
+name: Workflow
+
+on:
+  schedule:
+    - cron: "50 */6 * * *"
